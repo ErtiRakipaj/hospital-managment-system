@@ -225,7 +225,7 @@ public class EditPatient {
                                 "erti1234"
                         );
 
-                        String query = "UPDATE Patients SET Pname=?, Address=?, Pnumber=?, Age=?, Sex=?, Illness=? WHERE id=?";
+                        String query = "UPDATE patients SET name=?, address=?, phone=?, age=?, sex=?, illness=? WHERE id=?";
 
                         pstmt = conn.prepareStatement(query); // create a statement
                         pstmt.setString(1, namefield.getText()); // set input parameter 1

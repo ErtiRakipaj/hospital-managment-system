@@ -47,13 +47,13 @@ public class EditDoctor {
         headerpanelsh.setBackground(new Color(200, 200, 200));
 
         // CREATE HEADING JLABEL
-        JLabel heading = new JLabel("SIMPSONS MILITARY HOSPITAL");
+        JLabel heading = new JLabel("Some Random Hospital");
         Font font = new Font("Garamond", Font.BOLD, 35);
         heading.setFont(font);
         heading.setForeground(new Color(0, 255, 226));
         heading.setBounds(screenSize.width-700,40,700,45);
 
-        JLabel heading1 = new JLabel("SIMPSONS MILITARY HOSPITAL");
+        JLabel heading1 = new JLabel("Some Random Hospital");
         Font font1 = new Font("Garamond", Font.BOLD, 35);
         heading1.setFont(font1);
         heading1.setForeground(new Color(0, 126, 112));
@@ -61,7 +61,7 @@ public class EditDoctor {
 
 
 
-        ImageIcon image = new ImageIcon("C:\\Users\\diabolicfeak\\Documents\\NetBeansProjects\\hms\\src\\Images\\logo.png");
+        ImageIcon image = new ImageIcon();
         JLabel label = new JLabel("", image, JLabel.CENTER);
         JPanel panel = new JPanel(new BorderLayout());
         panel.add( label, BorderLayout.CENTER );
@@ -135,9 +135,9 @@ public class EditDoctor {
                     //    Connection conn=DriverManager.getConnection(
                     //              "jdbc:ucanaccess://C:\\Users\\diabolicfeak\\Documents\\NetBeansProjects\\hms\\src\\Database\\Hospital.accdb");
                     Connection conn = DriverManager.getConnection(
-                            "jdbc:mysql://localhost/hms",
+                            "jdbc:mysql://localhost:3306/hms",
                             "root",
-                            "root"
+                            "erti1234"
                     );
 
 //		Connection conn=DriverManager.getConnection("jdbc:odbc:hospital");
@@ -147,10 +147,10 @@ public class EditDoctor {
                     pstmt.setInt(1, a); // set input parameter 1
                     ResultSet rs = pstmt.executeQuery(); // execute insert statement
                     rs.next();
-                    name = rs.getString("DocName");
-                    specialisation = rs.getString("Specialisation");
-                    address = rs.getString("Address");
-                    phone = rs.getString("PNumber");
+                    name = rs.getString("docname");
+                    specialisation = rs.getString("specialisation");
+                    address = rs.getString("address");
+                    phone = rs.getString("phone_number");
 
                     editform(name, specialisation, address, phone, a);
 
@@ -207,12 +207,12 @@ public class EditDoctor {
                     //   Connection conn=DriverManager.getConnection(
                     //             "jdbc:ucanaccess://C:\\Users\\diabolicfeak\\Documents\\NetBeansProjects\\hms\\src\\Database\\Hospital.accdb");
                     Connection conn = DriverManager.getConnection(
-                            "jdbc:mysql://localhost/hms",
+                            "jdbc:mysql://localhost:3306/hms",
                             "root",
-                            "root"
+                            "erti1234"
                     );
 
-                    String query = "UPDATE doctors SET DocName=?, Specialisation=?, Address=?, Pnumber=? WHERE id=?";
+                    String query = "UPDATE doctors SET docname=?, specialisation=?, address=?, phone_number=? WHERE id=?";
 
                     pstmt = conn.prepareStatement(query); // create a statement
                     pstmt.setString(1, namefield.getText()); // set input parameter 1
@@ -245,8 +245,7 @@ public class EditDoctor {
     {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                new EditDoc();
-
+                new EditDoctor();
             }});
 
     }
