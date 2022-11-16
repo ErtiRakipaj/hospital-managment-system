@@ -1,5 +1,7 @@
 package org.example.hospitalmanagmentsystem.services;
 
+import org.example.hospitalmanagmentsystem.MenuPage;
+
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
 import java.awt.*;
