@@ -1,5 +1,7 @@
 package org.example.hospitalmanagmentsystem.extras;
 
+import org.example.hospitalmanagmentsystem.HMSApp;
+
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
 import java.awt.*;
@@ -13,7 +15,7 @@ public class ContactUs {
 
     JTextArea comments;
     JTextField email;
-    ContactUs()
+    public ContactUs()
     {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
@@ -69,7 +71,7 @@ public class ContactUs {
             public void actionPerformed(ActionEvent ae)
             {
                 contactusframe.setVisible(false);
-                new HomePage();
+                new HMSApp();
             }
         });
         home.setBounds((screenSize.width/2)-140,650,100,30);

@@ -1,5 +1,7 @@
 package org.example.hospitalmanagmentsystem;
 
+import org.example.hospitalmanagmentsystem.extras.AboutUs;
+import org.example.hospitalmanagmentsystem.extras.ContactUs;
 import org.example.hospitalmanagmentsystem.services.EditDoctor;
 import org.example.hospitalmanagmentsystem.services.EditPatient;
 

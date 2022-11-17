@@ -1,5 +1,8 @@
 package org.example.hospitalmanagmentsystem;
 
+import org.example.hospitalmanagmentsystem.extras.AboutUs;
+import org.example.hospitalmanagmentsystem.extras.ContactUs;
+
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.EtchedBorder;
@@ -118,9 +121,9 @@ public class HMSApp {
         mainpanel.setBounds(20, 130, 850, 450);
 
 
-        JLabel mainpanel_pic = new JLabel(new ImageIcon());
+        JLabel mainpanel_pic = new JLabel(new ImageIcon("C:\\Users\\user\\Desktop\\hospital-management-system\\hospital-managment-system\\src\\main\\resources\\Images\\hospital.png"));
         mainpanel_pic.setBounds(20,130,850,450);
-        ImageIcon iconfounder1 = new ImageIcon();
+        ImageIcon iconfounder1 = new ImageIcon("C:\\Users\\user\\Desktop\\hospital-management-system\\hospital-managment-system\\src\\main\\resources\\Images\\hospital.png");
         Image imgfounder1 = iconfounder1.getImage();
         Image newimg1 = imgfounder1.getScaledInstance(850, 550, Image.SCALE_SMOOTH ) ;
         ImageIcon logoicon1 = new ImageIcon(newimg1);

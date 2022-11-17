@@ -7,7 +7,7 @@ import java.awt.*;
 
 public class AboutUs {
 
-    AboutUs()
+    public AboutUs()
     {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 

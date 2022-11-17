@@ -1,6 +1,8 @@
 package org.example.hospitalmanagmentsystem.services;
 
 import org.example.hospitalmanagmentsystem.MenuPage;
+import org.example.hospitalmanagmentsystem.extras.AboutUs;
+import org.example.hospitalmanagmentsystem.extras.ContactUs;
 
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
