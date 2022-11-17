@@ -1,6 +1,7 @@
 package org.example.hospitalmanagmentsystem.services;
 
 import org.example.hospitalmanagmentsystem.HMSApp;
+import org.example.hospitalmanagmentsystem.MenuPage;
 
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
@@ -27,7 +28,7 @@ public class EditPatient {
     JButton menubutton;
 
 
-    EditPatient() {
+    public EditPatient() {
 
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 

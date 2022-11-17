@@ -1,5 +1,8 @@
 package org.example.hospitalmanagmentsystem;
 
+import org.example.hospitalmanagmentsystem.services.EditDoctor;
+import org.example.hospitalmanagmentsystem.services.EditPatient;
+
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.EtchedBorder;
@@ -36,7 +39,7 @@ public class MenuPage {
     int billamountint;
     double totalsum1=0;
 
-    MenuPage()
+    public MenuPage()
     {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
@@ -63,13 +66,13 @@ public class MenuPage {
         headerpanelsh.setBackground(new Color(200, 200, 200));
 
         // CREATE HEADING JLABEL
-        JLabel heading = new JLabel("SIMPSONS MILITARY HOSPITAL");
+        JLabel heading = new JLabel("Some Random Hospital");
         Font font = new Font("Garamond", Font.BOLD, 35);
         heading.setFont(font);
         heading.setForeground(new Color(0, 255, 226));
         heading.setBounds(screenSize.width-700,30,700,45);
 
-        JLabel heading1 = new JLabel("SIMPSONS MILITARY HOSPITAL");
+        JLabel heading1 = new JLabel("Some Random Hospital");
         Font font1 = new Font("Garamond", Font.BOLD, 35);
         heading1.setFont(font1);
         heading1.setForeground(new Color(0, 126, 112));
@@ -77,7 +80,7 @@ public class MenuPage {
 
 
         // LOGO
-        ImageIcon image = new ImageIcon("C:\\Users\\diabolicfeak\\Documents\\NetBeansProjects\\hms\\src\\Images\\logo.png");
+        ImageIcon image = new ImageIcon();
         JLabel label = new JLabel("", image, JLabel.CENTER);
         JPanel panel = new JPanel(new BorderLayout());
         panel.add( label, BorderLayout.CENTER );
@@ -99,7 +102,7 @@ public class MenuPage {
             public void actionPerformed(ActionEvent ae)
             {
                 menupageframe.setVisible(true);
-                new HomePage();
+                new HMSApp();
             }
         });
         home.setBounds((screenSize.width/2)-140,650,100,30);
@@ -194,17 +197,17 @@ public class MenuPage {
                     //              "jdbc:ucanaccess://C:\\Users\\diabolicfeak\\Documents\\NetBeansProjects\\hms\\src\\Database\\Hospital.accdb");
                     //Connection conn = DriverManager.getConnection("jdbc:odbc:hospital");
                     Connection conn = DriverManager.getConnection(
-                            "jdbc:mysql://localhost/hms",
+                            "jdbc:mysql://localhost:3306/hms",
                             "root",
                             "erti1234"
                     );
 
-                    String query = "insert into Patients(name, Address, number, Age, Sex, Illness) values(?, ?, ?, ?, ?, ?)";
+                    String query = "insert into patients(name, address, phone, age, sex, illness) values(?, ?, ?, ?, ?, ?)";
 
 
                     // FOR BILLING TABLE start
                     Statement s = conn.createStatement();
-                    ResultSet r = s.executeQuery("SELECT COUNT(*) AS rowcount FROM Patients");
+                    ResultSet r = s.executeQuery("SELECT COUNT(*) AS rowcount FROM patients");
                     r.next();
                     int count = r.getInt("rowcount");
                     count= count+1;
@@ -222,7 +225,7 @@ public class MenuPage {
                     pstmt.setString(1, outname.getText());
                     pstmt.setString(2, outaddress.getText());
                     pstmt.setString(3, outnumber.getText());
-                    pstmt.setString(4, outage.getText());
+                    pstmt.setInt(4, Integer.parseInt(outage.getText()));
                     pstmt.setString(5, outsex.getText());
                     pstmt.setString(6, outillness.getText());
                     pstmt.executeUpdate(); // execute insert statement
@@ -251,7 +254,7 @@ public class MenuPage {
             public void actionPerformed(ActionEvent ae)
             {
                 menupageframe.setVisible(false);
-                new Edit();
+                new EditPatient();
             }
         });
 
@@ -270,12 +273,12 @@ public class MenuPage {
             //  Connection conn=DriverManager.getConnection(
             //      "jdbc:ucanaccess://C:\\Users\\diabolicfeak\\Documents\\NetBeansProjects\\hms\\src\\Database\\Hospital.accdb");
             Connection conn = DriverManager.getConnection(
-                    "jdbc:mysql://localhost/hms",
+                    "jdbc:mysql://localhost:3306/hms",
                     "root",
-                    "root"
+                    "erti1234"
             );
 //			Connection conn = DriverManager.getConnection("jdbc:odbc:hospital");
-            PreparedStatement pst = conn.prepareStatement("Select * from Patients");
+            PreparedStatement pst = conn.prepareStatement("Select * from patients");
             ResultSet rs = pst.executeQuery();
             // Statement s = conn.createStatement();
             // ResultSet r = s.executeQuery("SELECT COUNT(*) AS rowcount FROM Patients");
@@ -286,13 +289,13 @@ public class MenuPage {
             while(rs.next())
             {
 
-                String id = rs.getString("id");
-                String name = rs.getString("PName");
-                String address = rs.getString("Address");
-                String phone = rs.getString("PNumber");
-                String age = rs.getString("Age");
-                String sex = rs.getString("Sex");
-                String illness = rs.getString("Illness");
+                int id = rs.getInt("id");
+                String name = rs.getString("name");
+                String address = rs.getString("address");
+                String phone = rs.getString("phone");
+                int age = rs.getInt("age");
+                String sex = rs.getString("sex");
+                String illness = rs.getString("illness");
                 patientmodel.addRow(new Object[]{id, name, address, phone, age, sex, illness});
                 i++;
 
@@ -328,7 +331,7 @@ public class MenuPage {
             public void actionPerformed(ActionEvent ae)
             {
                 menupageframe.setVisible(false);
-                new EditDoc();
+                new EditDoctor();
             }
         });
 
@@ -344,21 +347,21 @@ public class MenuPage {
             //  Connection conn=DriverManager.getConnection(
             //      "jdbc:ucanaccess://C:\\Users\\diabolicfeak\\Documents\\NetBeansProjects\\hms\\src\\Database\\Hospital.accdb");
             Connection conn = DriverManager.getConnection(
-                    "jdbc:mysql://localhost/hms",
+                    "jdbc:mysql://localhost:3306/hms",
                     "root",
-                    "root"
+                    "erti1234"
             );
             //Connection conn = DriverManager.getConnection("jdbc:odbc:hospital");
-            PreparedStatement pst = conn.prepareStatement("Select * from doctors");
+            PreparedStatement pst = conn.prepareStatement("select * from doctors");
             ResultSet rs = pst.executeQuery();
             while(rs.next())
             {
                 String id = rs.getString("id");
-                String name = rs.getString("DocName");
-                String specialisation = rs.getString("Specialisation");
-                String address = rs.getString("Address");
-                String age = rs.getString("PNumber");
-                doctormodel.addRow(new Object[]{id, name, specialisation, address, age});
+                String name = rs.getString("docname");
+                String specialisation = rs.getString("specialisation");
+                String address = rs.getString("address");
+                String phone_number = rs.getString("phone_number");
+                doctormodel.addRow(new Object[]{id, name, specialisation, address, phone_number});
 
             }
         }
@@ -432,7 +435,7 @@ public class MenuPage {
                     //    Connection conn=DriverManager.getConnection(
                     //              "jdbc:ucanaccess://C:\\Users\\diabolicfeak\\Documents\\NetBeansProjects\\hms\\src\\Database\\Hospital.accdb");
                     Connection conn = DriverManager.getConnection(
-                            "jdbc:mysql://localhost/hms",
+                            "jdbc:mysql://localhost:3306/hms",
                             "root",
                             "erti1234"
                     );
@@ -472,18 +475,18 @@ public class MenuPage {
                     // Connection conn1=DriverManager.getConnection(
                     // "jdbc:ucanaccess://C:\\Users\\diabolicfeak\\Documents\\NetBeansProjects\\hms\\src\\Database\\Hospital.accdb");
                     Connection conn = DriverManager.getConnection(
-                            "jdbc:mysql://localhost/hms",
+                            "jdbc:mysql://localhost:3306/hms",
                             "root",
-                            "root"
+                            "erti1234"
                     );
                     //Connection conn1=DriverManager.getConnection("jdbc:odbc:hospital");
                     // FOR PATIENT NAME start
                     Statement s = conn.createStatement();
-                    ResultSet r = s.executeQuery("SELECT * FROM Patients WHERE id="+a+"");
+                    ResultSet r = s.executeQuery("SELECT * FROM patients WHERE id="+a+"");
                     r.next();
-                    String patient_name = r.getString("PName");
-                    String patient_age = r.getString("Age");
-                    String patient_sex = r.getString("Sex");
+                    String patient_name = r.getString("name");
+                    int patient_age = r.getInt("age");
+                    String patient_sex = r.getString("sex");
 
 
 
@@ -516,7 +519,7 @@ public class MenuPage {
                     // Connection conn=DriverManager.getConnection(
                     //           "jdbc:ucanaccess://C:\\Users\\diabolicfeak\\Documents\\NetBeansProjects\\hms\\src\\Database\\Hospital.accdb");
                     Connection conn = DriverManager.getConnection(
-                            "jdbc:mysql://localhost/hms",
+                            "jdbc:mysql://localhost:3306/hms",
                             "root",
                             "erti1234"
                     );
@@ -564,9 +567,9 @@ public class MenuPage {
                     // Connection conn=DriverManager.getConnection(
                     //           "jdbc:ucanaccess://C:\\Users\\diabolicfeak\\Documents\\NetBeansProjects\\hms\\src\\Database\\Hospital.accdb");
                     Connection conn = DriverManager.getConnection(
-                            "jdbc:mysql://localhost/hms",
+                            "jdbc:mysql://localhost:3306/hms",
                             "root",
-                            "root"
+                            "erti1234"
                     );
                     //Connection conn=DriverManager.getConnection("jdbc:odbc:hospital");
                     int a = Integer.parseInt(billidfield.getText());

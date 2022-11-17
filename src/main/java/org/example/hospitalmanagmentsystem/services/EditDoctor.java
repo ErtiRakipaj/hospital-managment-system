@@ -24,7 +24,7 @@ public class EditDoctor {
     JButton menubutton;
 
 
-    EditDoctor()
+    public EditDoctor()
     {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
