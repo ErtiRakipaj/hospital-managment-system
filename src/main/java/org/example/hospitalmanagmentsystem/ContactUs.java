@@ -1,6 +1,4 @@
-package org.example.hospitalmanagmentsystem.extras;
-
-import org.example.hospitalmanagmentsystem.HMSApp;
+package org.example.hospitalmanagmentsystem;
 
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
@@ -21,10 +19,12 @@ public class ContactUs {
 
 
         //create contactusframe Jframe
-        final JFrame contactusframe = new JFrame("Contact Us");
+         JFrame contactusframe = new JFrame("Contact Us");
+
         contactusframe.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        contactusframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         contactusframe.setVisible(true);
+        contactusframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
         contactusframe.setLayout(null);
 
         JLabel bgimage = new JLabel(new ImageIcon("Images//death.jpg"));
@@ -44,13 +44,13 @@ public class ContactUs {
         headerpanelsh.setBackground(new Color(200, 200, 200));
 
         // CREATE HEADING JLABEL
-        JLabel heading = new JLabel("SIMPSONS MILITARY HOSPITAL");
+        JLabel heading = new JLabel("Some Random Hospital");
         Font font = new Font("Garamond", Font.BOLD, 35);
         heading.setFont(font);
         heading.setForeground(new Color(0, 255, 226));
         heading.setBounds(screenSize.width-700,30,700,45);
 
-        JLabel heading1 = new JLabel("SIMPSONS MILITARY HOSPITAL");
+        JLabel heading1 = new JLabel("Some Random Hospital");
         Font font1 = new Font("Garamond", Font.BOLD, 35);
         heading1.setFont(font1);
         heading1.setForeground(new Color(0, 126, 112));
@@ -76,28 +76,7 @@ public class ContactUs {
         });
         home.setBounds((screenSize.width/2)-140,650,100,30);
         contactusframe.add(home);
-        JButton aboutus = new JButton("About Us");
-        aboutus.setBounds((screenSize.width/2)-40,650,100,30);
-        aboutus.addActionListener(new ActionListener()
-        {
-            public void actionPerformed(ActionEvent ae)
-            {
-                contactusframe.setVisible(false);
-                new AboutUs();
-            }
-        });
-        contactusframe.add(aboutus);
-        JButton contactus = new JButton("Contact Us");
-        contactus.addActionListener(new ActionListener()
-        {
-            public void actionPerformed(ActionEvent ae)
-            {
-                contactusframe.setVisible(false);
-                new ContactUs();
-            }
-        });
-        contactus.setBounds((screenSize.width/2)+60,650,100,30);
-        contactusframe.add(contactus);
+
 
         JPanel mainbodypanel = new JPanel();
         mainbodypanel.setLayout(null);
@@ -115,8 +94,8 @@ public class ContactUs {
         map.setBackground(Color.red);
         map.setBounds(7*screenSize.width/10,15,350,350);
 
-        String text2 = "Address : Medical College Ulloor Road, Thiruvananthapuram, Kerala 695011";
-        String text4 = "Email ID : diabolicfreak@gmail.com";
+        String text2 = "Address : Loren Ipsum dolor sit amet";
+        String text4 = "Email ID : somerandomhospital@gmail.com";
         JTextArea address = new JTextArea();
         address.setFont(new Font("TimesNewRoman",Font.PLAIN,20));
         address.setText(text2);
@@ -140,7 +119,7 @@ public class ContactUs {
 
         JLabel emaillabel = new JLabel(text);
         emaillabel.setFont(new Font("TimesNewRoman",Font.BOLD,17));
-        emaillabel.setForeground(Color.white);
+        emaillabel.setForeground(Color.black);
 
         emaillabel.setOpaque(true);
         emaillabel.setBackground(new Color(0,0,0,0));
@@ -159,7 +138,7 @@ public class ContactUs {
 
         JLabel commentslabel = new JLabel(text1);
         commentslabel.setFont(new Font("TimesNewRoman",Font.BOLD,17));
-        commentslabel.setForeground(Color.white);
+        commentslabel.setForeground(Color.black);
 
         commentslabel.setOpaque(true);
         commentslabel.setBackground(new Color(0,0,0,0));
@@ -183,7 +162,7 @@ public class ContactUs {
                 {
                     // Connection conn=DriverManager.getConnection(
                     // "jdbc:ucanaccess://C://Users//Sreeram//Documents//NetBeansProjects//hms//src//Database//Hospital.accdb");
-                    Connection conn = DriverManager.getConnection("jdbc:odbc:hospital");
+                    Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/hms","root","erti1234");
                     System.out.println("Connection established");
                     PreparedStatement pst = conn.prepareStatement("insert into contactus(email,comments) values (?,?)");
                     pst.setString(1, email.getText());

@@ -1,9 +1,4 @@
-package org.example.hospitalmanagmentsystem.services;
-
-import org.example.hospitalmanagmentsystem.HMSApp;
-import org.example.hospitalmanagmentsystem.MenuPage;
-import org.example.hospitalmanagmentsystem.extras.AboutUs;
-import org.example.hospitalmanagmentsystem.extras.ContactUs;
+package org.example.hospitalmanagmentsystem;
 
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
@@ -11,6 +6,8 @@ import javax.swing.border.EtchedBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -18,12 +15,12 @@ import java.sql.ResultSet;
 
 public class EditPatient {
 
-    private String name;
-    private String address;
-    private String phone;
-    private int age;
-    private String sex;
-    private String illness;
+     String name;
+     String address;
+     String phone;
+     int age;
+     String sex;
+     String illness;
 
     JFrame editframe;
     JPanel formpanel, editpane, menubuttonpane;
@@ -34,8 +31,9 @@ public class EditPatient {
 
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
-        final JFrame editFrame = new JFrame("Edit");
+         JFrame editframe = new JFrame("Edit");
 
+        assert false;
         editframe.setExtendedState(JFrame.MAXIMIZED_BOTH);
         editframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         editframe.setLayout(null);
@@ -75,32 +73,15 @@ public class EditPatient {
         JButton home = new JButton("Home");
         home.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ae) {
-                editframe.setVisible(true);
-                new HMSApp();
+                //editframe.setVisible(true);
+                editframe.dispose();
+                new MenuPage();
             }
         });
 
         home.setBounds((screenSize.width / 2) - 140, 650, 100, 30);
         editframe.add(home);
-        JButton aboutus = new JButton("About Us");
-        aboutus.setBounds((screenSize.width / 2) - 40, 650, 100, 30);
-        aboutus.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent ae) {
-                editframe.setVisible(true);
-                new AboutUs();
-            }
-        });
 
-        editframe.add(aboutus);
-        JButton contactus = new JButton("Contact Us");
-        contactus.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent ae) {
-                editframe.setVisible(true);
-                new ContactUs();
-            }
-        });
-        contactus.setBounds((screenSize.width / 2) + 60, 650, 100, 30);
-        editframe.add(contactus);
 
         editpane = new JPanel();
         editpane.setLayout(null);
@@ -110,21 +91,37 @@ public class EditPatient {
         menubuttonpane.setLayout(null);
         menubuttonpane.setBounds(500, 140, 400, 50);
 
-        final JTextField idfield = new JTextField("Enter ID");
+        final JTextField idfield = new JTextField();
+        idfield.setText("Enter ID");
+        idfield.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (idfield.getText().equals("Enter ID")) {
+                    idfield.setText("");
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (idfield.getText().equals("")) {
+                    idfield.setText("Enter ID");
+                }
+            }
+        });
         idfield.setBounds(10, 10, 150, 30);
         JButton editbutton = new JButton("Edit");
         editbutton.setBounds(170, 10, 150, 30);
 
-        menubutton = new JButton("View Patients");
-        menubutton.setBounds(120, 15, 150, 30);
-        menubuttonpane.add(menubutton);
-        menubuttonpane.setVisible(false);
+//        menubutton = new JButton("View Patients");
+//        menubutton.setBounds(120, 15, 150, 30);
+//        menubuttonpane.add(menubutton);
+//        menubuttonpane.setVisible(false);
 
         editpane.add(idfield);
         editpane.add(editbutton);
 
         editframe.add(editpane);
-        editframe.add(menubuttonpane);
+       // editframe.add(menubuttonpane);
         editframe.add(panel);
         editframe.add(heading);
         editframe.add(heading1);
@@ -191,7 +188,7 @@ public class EditPatient {
             phonefield.setBounds(165, 160, 280, 40);
             formpanel.add(phonefield);
 
-            final JTextField agefield = new JTextField(age);
+            final JTextField agefield = new JTextField(String.valueOf(age));
             agefield.setBounds(165, 210, 280, 40);
             formpanel.add(agefield);
 
@@ -211,7 +208,7 @@ public class EditPatient {
             formpanel.setBorder(new EtchedBorder(EtchedBorder.RAISED));
 
             editpane.setVisible(false);
-            menubuttonpane.setVisible(true);
+            //menubuttonpane.setVisible(true);
             formpanel.repaint();
 
 
@@ -248,12 +245,6 @@ public class EditPatient {
                 }
             });
 
-            menubutton.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent ae) {
-                    new MenuPage();
-                    editframe.setVisible(false);
-                }
-            });
 
         }
 

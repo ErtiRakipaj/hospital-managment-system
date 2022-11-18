@@ -1,8 +1,5 @@
 package org.example.hospitalmanagmentsystem;
 
-import org.example.hospitalmanagmentsystem.extras.AboutUs;
-import org.example.hospitalmanagmentsystem.extras.ContactUs;
-
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.EtchedBorder;
@@ -16,7 +13,7 @@ import java.sql.ResultSet;
 
 public class HMSApp {
 
-    private final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
+    private final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
     private final String DB_URL = "jdbc:mysql://localhost:3306/hms";
     private final String USER = "root";
     private final String PASS = "erti1234";
@@ -34,7 +31,7 @@ public class HMSApp {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
         // HOME PAGE FRAME
-        final JFrame homepageframe = new JFrame("Some Hospital");
+        final JFrame homepageframe = new JFrame("Some Random Hospital");
         homepageframe.setExtendedState(JFrame.MAXIMIZED_BOTH);
         homepageframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -76,40 +73,7 @@ public class HMSApp {
         panel.setBounds(50,5,100,90);
 
 
-        //FOOTER JPANEL
-        JButton home = new JButton("Home");
-        home.addActionListener(new ActionListener()
-        {
-            public void actionPerformed(ActionEvent ae)
-            {
-                homepageframe.setVisible(false);
-                new HMSApp();
-            }
-        });
-        home.setBounds((screenSize.width/2)-140,650,100,30);
-        homepageframe.add(home);
-        JButton aboutus = new JButton("About Us");
-        aboutus.setBounds((screenSize.width/2)-40,650,100,30);
-        aboutus.addActionListener(new ActionListener()
-        {
-            public void actionPerformed(ActionEvent ae)
-            {
-                homepageframe.setVisible(false);
-                new AboutUs();
-            }
-        });
-        homepageframe.add(aboutus);
-        JButton contactus = new JButton("Contact Us");
-        contactus.addActionListener(new ActionListener()
-        {
-            public void actionPerformed(ActionEvent ae)
-            {
-                homepageframe.setVisible(false);
-                new ContactUs();
-            }
-        });
-        contactus.setBounds((screenSize.width/2)+60,650,100,30);
-        homepageframe.add(contactus);
+
 
 
 
@@ -131,7 +95,18 @@ public class HMSApp {
         mainpanel.add(mainpanel_pic);
 
 
+        JButton contactus = new JButton("Contact Us");
 
+        contactus.setBounds((screenSize.width/2)+60,650,100,30);
+        homepageframe.add(contactus);
+        contactus.addActionListener(new ActionListener()
+        {
+            public void actionPerformed(ActionEvent ae)
+            {
+                homepageframe.dispose();
+                new ContactUs();
+            }
+        });
 
 
 

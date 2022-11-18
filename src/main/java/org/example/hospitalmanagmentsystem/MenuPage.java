@@ -1,10 +1,5 @@
 package org.example.hospitalmanagmentsystem;
 
-import org.example.hospitalmanagmentsystem.extras.AboutUs;
-import org.example.hospitalmanagmentsystem.extras.ContactUs;
-import org.example.hospitalmanagmentsystem.services.EditDoctor;
-import org.example.hospitalmanagmentsystem.services.EditPatient;
-
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.EtchedBorder;
@@ -12,6 +7,8 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.sql.*;
 
 public class MenuPage {
@@ -98,39 +95,17 @@ public class MenuPage {
 
 
         //FOOTER JPANEL
-        JButton home = new JButton("Home");
+        JButton home = new JButton("Logout");
         home.addActionListener(new ActionListener()
         {
             public void actionPerformed(ActionEvent ae)
             {
-                menupageframe.setVisible(true);
+                menupageframe.dispose();
                 new HMSApp();
             }
         });
         home.setBounds((screenSize.width/2)-140,650,100,30);
         menupageframe.add(home);
-        JButton aboutus = new JButton("About Us");
-        aboutus.setBounds((screenSize.width/2)-40,650,100,30);
-        aboutus.addActionListener(new ActionListener()
-        {
-            public void actionPerformed(ActionEvent ae)
-            {
-                menupageframe.setVisible(true);
-                new AboutUs();
-            }
-        });
-        menupageframe.add(aboutus);
-        JButton contactus = new JButton("Contact Us");
-        contactus.addActionListener(new ActionListener()
-        {
-            public void actionPerformed(ActionEvent ae)
-            {
-                menupageframe.setVisible(true);
-                new ContactUs();
-            }
-        });
-        contactus.setBounds((screenSize.width/2)+60,650,100,30);
-        menupageframe.add(contactus);
 
 
         //create mainbodypanel JPanel
@@ -158,20 +133,128 @@ public class MenuPage {
         outform.setBounds(410,25,450,480);
         outform.setBorder(new EtchedBorder(EtchedBorder.RAISED));
 
-        JLabel outlabel = new JLabel("Enter Details of Out Patient");
+        JLabel outlabel = new JLabel("Enter Details of Our Patient");
         outlabel.setBounds(140,20,300,40);
-        final JTextField outname = new JTextField("Enter Name");
+
+        final JTextField outname = new JTextField();
+        outname.setText("Enter Name");
+        outname.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+
+                if(outname.getText().equals("Enter Name")) {
+                    outname.setText("");
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (outname.getText().equals("")) {
+                    outname.setText("Enter Name");
+                }
+            }
+        });
         outname.setBounds(80,70,300,40);
-        final JTextField outaddress = new JTextField("Enter Address");
+
+        final JTextField outaddress = new JTextField();
+        outaddress.setText("Enter Address");
+        outaddress.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+
+                if(outaddress.getText().equals("Enter Address")) {
+                    outaddress.setText("");
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (outaddress.getText().equals("")) {
+                    outaddress.setText("Enter Address");
+                }
+            }
+        });
         outaddress.setBounds(80,120,300,40);
-        final JTextField outnumber = new JTextField("Enter Ph no");
+
+        final JTextField outnumber = new JTextField();
+        outnumber.setText("Enter Ph no");
+        outnumber.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (outnumber.getText().equals("Enter Ph no")) {
+                    outnumber.setText("");
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (outnumber.getText().equals("")) {
+                    outnumber.setText("Enter Ph no");
+                }
+            }
+        });
         outnumber.setBounds(80,170,300,40);
-        final JTextField outage = new JTextField("Enter Age");
+
+        final JTextField outage = new JTextField();
+        outage.setText("Enter Age");
+        outage.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (outage.getText().equals("Enter Age")) {
+                    outage.setText("");
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (outage.getText().equals("")) {
+                    outage.setText("Enter Age");
+                }
+            }
+        });
+
         outage.setBounds(80,220,300,40);
-        final JTextField outsex = new JTextField("Enter Sex");
+
+        final JTextField outsex = new JTextField();
+        outsex.setText("Enter Patient's Sex");
+        outsex.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (outsex.getText().equals("Enter Patient's Sex")) {
+                    outsex.setText("");
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (outsex.getText().equals("")) {
+                    outsex.setText("Enter Patient's Sex");
+                }
+            }
+        });
         outsex.setBounds(80,270,300,40);
-        final JTextField outillness = new JTextField("Enter Illness");
+
+        final JTextField outillness = new JTextField();
+
+        outillness.setText("Enter Illness");
+
+        outillness.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (outillness.getText().equals("Enter Illness")) {
+                    outillness.setText("");
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (outillness.getText().equals("")) {
+                    outillness.setText("Enter Illness");
+                }
+            }
+        });
         outillness.setBounds(80,320,300,40);
+
         JButton outbutton = new JButton("Submit");
         outbutton.setBounds(100,400,250,40);
 
@@ -265,11 +348,10 @@ public class MenuPage {
         patientmodel.addColumn("id");
         patientmodel.addColumn("Name");
         patientmodel.addColumn("Address");
-        patientmodel.addColumn("Age");
         patientmodel.addColumn("Phone Number");
+        patientmodel.addColumn("Age");
         patientmodel.addColumn("Sex");
         patientmodel.addColumn("Illness");
-        patientmodel.addColumn("Buttons");
 
         try{
             //  Connection conn=DriverManager.getConnection(
@@ -360,7 +442,7 @@ public class MenuPage {
             {
                 String id = rs.getString("id");
                 String name = rs.getString("docname");
-                String specialisation = rs.getString("specialisation");
+                String specialisation = rs.getString("specilalisation");
                 String address = rs.getString("address");
                 String phone_number = rs.getString("phone_number");
                 doctormodel.addRow(new Object[]{id, name, specialisation, address, phone_number});
@@ -395,7 +477,23 @@ public class MenuPage {
         billidpanel.setLayout(null);
         billidpanel.setBounds(450,10,500,50);
 
-        final JTextField billidfield = new JTextField("Enter id");
+        final JTextField billidfield = new JTextField();
+        billidfield.setText("Enter id");
+        billidfield.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (billidfield.getText().equals("Enter id")) {
+                    billidfield.setText("");
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (billidfield.getText().equals("")) {
+                    billidfield.setText("Enter id");
+                }
+            }
+        });
         JButton billidbutton = new JButton("Show");
         billidfield.setBounds(5,5,200,30);
         billidbutton.setBounds(300,5,200,30);
@@ -408,10 +506,42 @@ public class MenuPage {
 
         // BILL ENTRY PANEL start
 
-        final JTextField bill_item = new JTextField("Bill Item");
+        final JTextField bill_item = new JTextField();
+        bill_item.setText("Bill Item");
+        bill_item.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (bill_item.getText().equals("Bill Item")) {
+                    bill_item.setText("");
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (bill_item.getText().equals("")){
+                    bill_item.setText("Bill Item");
+                }
+            }
+        });
         bill_item.setBounds(140,130,300,30);
 
-        final JTextField bill_amt = new JTextField("Bill Amount");
+        final JTextField bill_amt = new JTextField();
+        bill_amt.setText("Bill Amount");
+        bill_amt.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (bill_amt.getText().equals("Bill Amount")) {
+                    bill_amt.setText("");
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (bill_amt.getText().equals("")) {
+                    bill_amt.setText("Bill Amount");
+                }
+            }
+        });
         bill_amt.setBounds(140,200,300,30);
 
         JButton bill_submit = new JButton("Add");

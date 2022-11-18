@@ -1,14 +1,12 @@
-package org.example.hospitalmanagmentsystem.services;
-
-import org.example.hospitalmanagmentsystem.MenuPage;
-import org.example.hospitalmanagmentsystem.extras.AboutUs;
-import org.example.hospitalmanagmentsystem.extras.ContactUs;
+package org.example.hospitalmanagmentsystem;
 
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -71,51 +69,59 @@ public class EditDoctor {
         panel.add( label, BorderLayout.CENTER );
         panel.setBounds(50,15,100,90);
 
+        JButton home = new JButton("Home");
+        home.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent ae) {
+                editframe.dispose();
+                //editframe.setVisible(true);
+                new MenuPage();
+            }
+        });
+
+        home.setBounds((screenSize.width / 2) - 140, 650, 100, 30);
+        editframe.add(home);
+
         //FOOTER JPANEL
-        JButton aboutus = new JButton("About Us");
-        aboutus.setBounds((screenSize.width/2)-120,650,100,30);
-        aboutus.addActionListener(new ActionListener()
-        {
-            public void actionPerformed(ActionEvent ae)
-            {
-                new AboutUs();
-            }
-        });
-        editframe.add(aboutus);
-        JButton contactus = new JButton("Contact Us");
-        contactus.addActionListener(new ActionListener()
-        {
-            public void actionPerformed(ActionEvent ae)
-            {
-                new ContactUs();
-            }
-        });
-        contactus.setBounds((screenSize.width/2)+10,650,100,30);
-        editframe.add(contactus);
 
         editpane = new JPanel();
         editpane.setLayout(null);
         editpane.setBounds(500,120,400,200);
 
-        menubuttonpane = new JPanel();
-        menubuttonpane.setLayout(null);
-        menubuttonpane.setBounds(510,120,400,50);
+//        menubuttonpane = new JPanel();
+//        menubuttonpane.setLayout(null);
+//        menubuttonpane.setBounds(510,120,400,50);
 
-        final JTextField idfield = new JTextField("Enter ID");
+        final JTextField idfield = new JTextField();
+        idfield.setText("Enter ID");
+        idfield.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (idfield.getText().equals("Enter ID")) {
+                    idfield.setText("");
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (idfield.getText().equals("")) {
+                    idfield.setText("Enter ID");
+                }
+            }
+        });
         idfield.setBounds(10,10,150,30);
         JButton editbutton = new JButton("Edit");
         editbutton.setBounds(170,10,150,30);
 
-        menubutton = new JButton("View ");
-        menubutton.setBounds(120,10,150,30);
-        menubuttonpane.add(menubutton);
-        menubuttonpane.setVisible(false);
+//        menubutton = new JButton("View ");
+//        menubutton.setBounds(120,10,150,30);
+//        menubuttonpane.add(menubutton);
+//        menubuttonpane.setVisible(false);
 
         editpane.add(idfield);
         editpane.add(editbutton);
 
         editframe.add(editpane);
-        editframe.add(menubuttonpane);
+        //editframe.add(menubuttonpane);
         editframe.add(panel);
         editframe.add(heading);
         editframe.add(heading1);
@@ -152,7 +158,7 @@ public class EditDoctor {
                     ResultSet rs = pstmt.executeQuery(); // execute insert statement
                     rs.next();
                     name = rs.getString("docname");
-                    specialisation = rs.getString("specialisation");
+                    specialisation = rs.getString("specilalisation");
                     address = rs.getString("address");
                     phone = rs.getString("phone_number");
 
@@ -197,7 +203,7 @@ public class EditDoctor {
 
 
         editpane.setVisible(false);
-        menubuttonpane.setVisible(true);
+        //menubuttonpane.setVisible(true);
         formpanel.repaint();
 
 
@@ -216,7 +222,7 @@ public class EditDoctor {
                             "erti1234"
                     );
 
-                    String query = "UPDATE doctors SET docname=?, specialisation=?, address=?, phone_number=? WHERE id=?";
+                    String query = "UPDATE doctors SET docname=?, specilalisation=?, address=?, phone_number=? WHERE id=?";
 
                     pstmt = conn.prepareStatement(query); // create a statement
                     pstmt.setString(1, namefield.getText()); // set input parameter 1
@@ -234,14 +240,7 @@ public class EditDoctor {
             }
         });
 
-        menubutton.addActionListener(new ActionListener()
-        {
-            public void actionPerformed(ActionEvent ae)
-            {
-                new MenuPage();
-                editframe.setVisible(false);
-            }
-        });
+
 
     }
 
