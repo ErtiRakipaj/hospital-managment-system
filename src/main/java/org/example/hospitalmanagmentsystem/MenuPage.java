@@ -737,13 +737,13 @@ public class MenuPage {
                 totaldisplaylabel = new JLabel();
                 totaldisplaylabel.setText("");
                 billdisplaypanel.add(totaldisplaylabel);
-                totaldisplaylabel.setText("Amount payable: "+total2);
+                totaldisplaylabel.setText("Amount to pay: "+total2);
 //                 billdisplaypanel.add(totaldisplaylabel);
 //                 totaldisplaylabel.setBounds(250,50,300,600);
 //                 totaldisplaylabel.repaint();
 
                 JTextField totaltext = new JTextField();
-                totaltext.setText("Amount payable: "+total2);
+                totaltext.setText("Amount to pay: "+total2);
                 billdisplaypanel.add(totaltext);
                 totaltext.setBounds(150,300,200,30);
                 System.out.println(total2);
