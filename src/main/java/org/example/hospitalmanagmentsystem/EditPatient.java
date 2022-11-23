@@ -142,7 +142,7 @@ public class EditPatient {
                     Connection conn = DriverManager.getConnection(
                             "jdbc:mysql://localhost:3306/hms",
                             "root",
-                            "erti1234"
+                            "password"
                     );
 
                     int a = Integer.parseInt(idfield.getText());
@@ -222,7 +222,7 @@ public class EditPatient {
                         Connection conn = DriverManager.getConnection(
                                 "jdbc:mysql://localhost:3306/hms",
                                 "root",
-                                "erti1234"
+                                "password"
                         );
 
                         String query = "UPDATE patients SET name=?, address=?, phone=?, age=?, sex=?, illness=? WHERE id=?";

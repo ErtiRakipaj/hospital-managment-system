@@ -162,7 +162,7 @@ public class ContactUs {
                 {
                     // Connection conn=DriverManager.getConnection(
                     // "jdbc:ucanaccess://C://Users//Sreeram//Documents//NetBeansProjects//hms//src//Database//Hospital.accdb");
-                    Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/hms","root","erti1234");
+                    Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/hms","root","password");
                     System.out.println("Connection established");
                     PreparedStatement pst = conn.prepareStatement("insert into contactus(email,comments) values (?,?)");
                     pst.setString(1, email.getText());

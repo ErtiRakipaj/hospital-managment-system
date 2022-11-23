@@ -16,7 +16,7 @@ public class HMSApp {
     private final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
     private final String DB_URL = "jdbc:mysql://localhost:3306/hms";
     private final String USER = "root";
-    private final String PASS = "erti1234";
+    private final String PASS = "password";
 
 
     public HMSApp() {

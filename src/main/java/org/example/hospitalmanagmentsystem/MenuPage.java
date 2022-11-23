@@ -284,7 +284,7 @@ public class MenuPage {
                     Connection conn = DriverManager.getConnection(
                             "jdbc:mysql://localhost:3306/hms",
                             "root",
-                            "erti1234"
+                            "password"
                     );
 
                     String query = "insert into patients(name, address, phone, age, sex, illness) values(?, ?, ?, ?, ?, ?)";
@@ -359,7 +359,7 @@ public class MenuPage {
             Connection conn = DriverManager.getConnection(
                     "jdbc:mysql://localhost:3306/hms",
                     "root",
-                    "erti1234"
+                    "password"
             );
 //			Connection conn = DriverManager.getConnection("jdbc:odbc:hospital");
             PreparedStatement pst = conn.prepareStatement("Select * from patients");
@@ -433,7 +433,7 @@ public class MenuPage {
             Connection conn = DriverManager.getConnection(
                     "jdbc:mysql://localhost:3306/hms",
                     "root",
-                    "erti1234"
+                    "password"
             );
             //Connection conn = DriverManager.getConnection("jdbc:odbc:hospital");
             PreparedStatement pst = conn.prepareStatement("select * from doctors");
@@ -569,7 +569,7 @@ public class MenuPage {
                     Connection conn = DriverManager.getConnection(
                             "jdbc:mysql://localhost:3306/hms",
                             "root",
-                            "erti1234"
+                            "password"
                     );
                     //Connection conn = DriverManager.getConnection("jdbc:odbc:hospital");
                     String query = "insert into patient_"+a+"(bill_item, billamount) values(?, ?)";
@@ -609,7 +609,7 @@ public class MenuPage {
                     Connection conn = DriverManager.getConnection(
                             "jdbc:mysql://localhost:3306/hms",
                             "root",
-                            "erti1234"
+                            "password"
                     );
                     //Connection conn1=DriverManager.getConnection("jdbc:odbc:hospital");
                     // FOR PATIENT NAME start
@@ -653,7 +653,7 @@ public class MenuPage {
                     Connection conn = DriverManager.getConnection(
                             "jdbc:mysql://localhost:3306/hms",
                             "root",
-                            "erti1234"
+                            "password"
                     );
                     //Connection conn=DriverManager.getConnection("jdbc:odbc:hospital");
                     int a = Integer.parseInt(billidfield.getText());
@@ -701,7 +701,7 @@ public class MenuPage {
                     Connection conn = DriverManager.getConnection(
                             "jdbc:mysql://localhost:3306/hms",
                             "root",
-                            "erti1234"
+                            "password"
                     );
                     //Connection conn=DriverManager.getConnection("jdbc:odbc:hospital");
                     int a = Integer.parseInt(billidfield.getText());

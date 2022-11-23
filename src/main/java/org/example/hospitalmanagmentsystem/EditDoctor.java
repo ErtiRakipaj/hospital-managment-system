@@ -147,7 +147,7 @@ public class EditDoctor {
                     Connection conn = DriverManager.getConnection(
                             "jdbc:mysql://localhost:3306/hms",
                             "root",
-                            "erti1234"
+                            "password"
                     );
 
 //		Connection conn=DriverManager.getConnection("jdbc:odbc:hospital");
@@ -219,7 +219,7 @@ public class EditDoctor {
                     Connection conn = DriverManager.getConnection(
                             "jdbc:mysql://localhost:3306/hms",
                             "root",
-                            "erti1234"
+                            "password"
                     );
 
                     String query = "UPDATE doctors SET docname=?, specilalisation=?, address=?, phone_number=? WHERE id=?";
